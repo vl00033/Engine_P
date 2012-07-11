@@ -1,0 +1,24 @@
+{
+    "root":{"id":"n1"}
+	,
+	"nodes":[
+	    {"id":"n1","type":"alt","children":["l1","n2"]},
+		{"id":"n2","type":"alt","children":["l2","n3"]},
+		{"id":"n3","type":"par","children":["l3","n4"]},
+		{"id":"n4","type":"seq","children":["l4","n5"]},
+		{"id":"n5","type":"alt","children":["l5","n6"]},
+		{"id":"n6","type":"par","children":["l6","n7"]},
+		{"id":"n7","type":"par","children":["l7","n8"]},
+		{"id":"n8","type":"seq","children":["l8"]}
+	],
+     "leaves":[
+		{"id":"l1","participant":"1","message":"m11"},
+		{"id":"l2","participant":"2","message":"m10"},
+		{"id":"l3","participant":"3","message":"m5"},
+		{"id":"l4","participant":"4","message":"m8"},
+		{"id":"l5","participant":"5","message":"m9"},
+		{"id":"l6","participant":"6","message":"m6"},
+		{"id":"l7","participant":"3","message":"m1"},
+		{"id":"l8","participant":"4","message":"m3"}
+	]
+}

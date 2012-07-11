@@ -1,0 +1,75 @@
+/*
+The error application css to make a good clear representation
+of data
+*/
+BODY:after
+{
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+	font-size: 0;
+}
+BODY
+{
+	display: inline-block;
+}
+BODY
+{
+/*\*/
+	display: block;
+/**/
+	-height: 1px;
+}
+/*+}*/
+/*[clearfix]*/BODY
+{
+	color: #E0E0E4;
+	height: 100%;
+	width: 100%;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	background-color: #272D3E;
+}
+#wrap
+{
+	margin: 0 auto;
+	background-color: #3B5999;
+	width: 1164px;
+	margin-top: -10px;
+	padding-left: 50px;
+	padding-top: 6px;
+	min-height: 100%;
+	position: relative;
+}
+#header
+{
+	font-weight: bold;
+	font-family: serif;
+	margin-left: 401px;
+	font-size: 36px;
+}
+
+.error
+{
+	margin-left: 140px;
+	margin-top: 263px;
+	font-size: 31.7pt;
+}
+#browsers
+{
+	position: absolute;
+	top: 807px;
+	left: 787px;
+}
+.browsers
+{
+	top: 807px;
+	left: 1100px;
+	position: absolute;
+	width: 50px;
+}
+#firefox
+{
+	left: 1043px;
+}

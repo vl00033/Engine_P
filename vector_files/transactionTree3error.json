@@ -1,0 +1,13 @@
+{
+    "root":{"id":"n1"}
+	,
+	"nodes":[
+	    {"id":"n1","type":"alt","children":["l1","n2"]},
+		{"id":"n2","type":"seq","children":["l2","l3"]}
+	],
+     "leaves":[
+		{"id":"l1","participant":"1","message":"m1"},
+		{"id":"l2","participant":"1","message":"m2"},
+		{"id":"l3","participant":"1","message":"m2"}
+			]
+}

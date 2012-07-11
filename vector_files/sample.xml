@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transactionTree>
+	<root>
+		 <id>n1</id>
+	</root>
+
+	<nodes>
+		<node>
+			 <id>n1</id>
+			 <type>seq</type>
+			 <children>
+				 <id>l1</id>
+				 <id>n2</id>
+			 </children>
+		 </node>
+		 <node>
+			 <id>n2</id>
+			 <type>par</type>
+			 <children>
+				 <id>l2</id>
+				 <id>l3</id>
+			 </children>
+		 </node>
+	</nodes>
+
+	<leaves>
+		 <leaf>
+			 <id>l1</id>
+			 <participant>1</participant>
+			 <message>m1</message>
+		 </leaf>
+		 <leaf>
+			 <id>l2</id>
+			 <participant>2</participant>
+			 <message>m2</message>
+		 </leaf>
+		 <leaf>
+			 <id>l3</id>
+			 <participant>1</participant>
+			 <message>m3</message>
+		 </leaf>
+	</leaves>
+</transactionTree>

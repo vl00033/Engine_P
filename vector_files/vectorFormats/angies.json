@@ -1,0 +1,13 @@
+{
+	"vectorFormat":[
+		"(L,L,L,L)",
+		"(m1,L,L,L)",
+		"(m1m2,L,L,L)",
+		"(m1m2m3,L,L,L)",
+		"(m1m2,m4,L,L)",
+		"(m1m2m3,m4,L,L)",
+		"(m1m2m3,m4m5,L,L)",
+		"(m1m2m3,m4m5m6,L,L)",
+		"(m1m2m3,m4m5m6m7,L,L)"
+		]
+}

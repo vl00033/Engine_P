@@ -1,0 +1,10 @@
+BUGS
+
+Animator paths compiling twice because
+conc vectors not checked in the function
+and also alt was set for all in struct
+and had to check conc there as well
+
+Graph not drawing inside due to nan
+values
+Had to look at code

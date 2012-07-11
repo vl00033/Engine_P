@@ -1,0 +1,19 @@
+{
+    "root":{"id":"n1"}
+	,
+	"nodes":[
+	    {"id":"n1","type":"seq","children":["l1","n2"]},
+		{"id":"n2","type":"alt","children":["n3","n4"]},
+		{"id":"n3","type":"seq","children":["l2","l3"]},
+		{"id":"n4","type":"seq","children":["l4","n5"]},
+		{"id":"n5","type":"par","children":["l5","l6"]}
+	],
+     "leaves":[
+		{"id":"l1","participant":"1","message":"m1"},
+		{"id":"l2","participant":"2","message":"m2"},
+		{"id":"l3","participant":"1","message":"m3"},
+		{"id":"l4","participant":"1","message":"m4"},
+		{"id":"l5","participant":"3","message":"m5"},
+		{"id":"l6","participant":"2","message":"m6"}
+	]
+}

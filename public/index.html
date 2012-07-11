@@ -1,0 +1,237 @@
+<html>
+    <head>
+        <title>Transaction Engine</title>
+        <script type="text/javascript" src="js/lib/jquery-1.7.1.js"></script>
+        <script type="text/javascript" src="js/initialize/checkUnsupported.js"></script>
+        <script type="text/javascript" src="js/lib/json2.js"></script>
+        <script type="text/javascript" src="js/lib/list.js"></script>
+        <script type="text/javascript" src="js/lib/raphael-min.js"></script>
+        <script type="text/javascript" src="js/lib/xmlToJson.js"></script>
+        <script type="text/javascript" src="js/lib/canvg.js"></script>
+        <script type="text/javascript" src="js/lib/rgbcolor.js"></script>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body id="body">
+        <div id="videoContainer">
+            <button id="closeVideo" class="videoButton" >X</button>
+            <div id="demoBar">
+                <button id="guide" class="videoButton">Input Json Guide</button>
+                <button id="sampleJSON" class="videoButton">Tree JSON Sample</button>
+                <button id="vfSampleJSON" class="videoButton">Vector Json Sample</button>
+                <button id="ttXMLSchema" class="videoButton">Tree XML Schema</button>
+                <button id="ttSampleXML" class="videoButton" >Tree XML Sample</button>
+                <button id="vfXMLSchema" class="videoButton">Vector XML Schema</button>
+                <button id="vfSampleXML" class="videoButton" >Vector XML Sample</button>
+            </div>
+            <video id="demoVideo" controls="controls">
+                Video tag not supported. Download the video <a href="video/demo.webm">here</a>.
+            </video>
+        </div>
+        <div id="newWindow">
+            <div id="aboutBox">
+                <h2 id="titleAbout">About</h2>
+                <div id="about1" class="about12"><h3>Developer</h3><a target="_blank" href="http://uk.linkedin.com/pub/pavlos-georgiou/27/442/639">Pavlos Georgiou<br/>BSc Computer Science<br/>University of Surrey
+                        <br/>Guildford, Surrey<br/>United Kingdom<br/>pg00045@surrey.ac.uk</a><br/><br/></div>
+                <div id="about2" class="about12"><h3>Versions</h3>v1.0 October 29th 2011<br/>v2.0 November 16th 2011
+                    <br/>v3.0 January 3rd 2012<br/>v4.0 February 10th 2012<br/>v5.0 May 6th 2012<br/><br/></div>
+                <div id="about3"><h3>Based on the research made by</h3><a target="_blank" href="http://www.surrey.ac.uk/computing/people/sotiris_moschoyiannis/">Dr. Sotiris Moschoyiannis</a><br/><a target="_blank" href="http://www.surrey.ac.uk/computing/people/paul_krause/">Prof. Paul Krause</a></div>
+                <button id="closeAbout" class="barbutton">Close</button><button id="descrButton" class="barbutton">Info</button><button id="refButton" class="barbutton">References</button>
+                <div id="description">
+                    <h3>Description</h3>
+                    The application demonstrates the forward execution of long-running transactions and the recovery execution
+                    that happens to recover all processed nodes done during the forward execution when an error occurs.
+                    This application takes as input the transaction tree.
+                    The transaction tree itself contains the required information on how the multiple services can be invoked in the
+                    transaction. 
+                    There are three ways to do this. Services can be invoked sequentially meaning one after the other, alternatively,
+                    one or the other and in parallel all at the same time. To execute the transaction the tree is converted into a 
+                    different form. This form is none other than the vector format.The vector format does some mathematical 
+                    calculations to extract the service invocations into vectors that are
+                    ordered and executed one by one.
+                </div>
+                <div id="references">
+                    <h3>References</h3>
+                    <div class="first"><a target="_blank" href="papers/vis_vec_trans_DEST2012_sm.pdf">[1] Sotiris Moschoyiannis, Paul Krause, Pavlos Georgiou. (2012). An Animation Tool for Exploring Transactions in a DE</a></div></br>
+                    <div><a target="_blank" href="http://www.computing.surrey.ac.uk/personal/st/S.Moschoyiannis/papers-source/fesca08-transcripts.pdf">[2] Sotiris Moschoyiannis, Amir Razavi, Paul Krause. (2010). Transaction Scripts: Making Implicit Scenarios Explicit</a></div></br>
+                    <div><a target="_blank" href="http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=5276716&url=http%3A%2F%2Fieeexplore.ieee.org%2Fiel5%2F5238702%2F5276671%2F05276716.pdf%3Farnumber%3D5276716">[3] Alexandros Marinos and Paul Krause. (2009). What, not How: A generative approach to service composition</a></div></br>
+                    <div><a target="_blank" href="http://www.youtube.com/watch?v=jnrAtXt3uu4">[4] Digital Ecosystems Video</a></div></br>
+                    <div><a target="_blank" href="http://epubs.surrey.ac.uk/2416/1/SRF002612.pdf">[5] Sotiris Moschoyiannis, Amir R Razavi, Yongyan Zheng, Paul Krause. (2008). Long-running Transactions semantics, schemas, implementation</a></div></br>
+                    <div><a target="_blank" href="http://www.springerlink.com/content/4167854554388621/">[6] Alexandros Marinos, Paul Krause. (2010). Towards the Web of Models: A Rule-driven RESTful Architecture for Distributed Systems</a></div></br>
+                </div>
+            </div>
+
+            <div id="alertSel">
+                You can select a different path for the execution of the animation using
+                <button id="decAl" class="barButton" disabled="disabled">-</button><button id="incAl" class="barButton" disabled="disabled">+</button>
+                found on the run button
+                <button id="runAlert" class="barButton">Run</button>
+                <button id="cancelAlert" class="barButton">Cancel</button>
+            </div>
+        </div>
+
+        <div id="body2">
+            <div id="wrap">
+
+                <h1 id="header">
+                    Transaction Engine
+                </h1>
+
+                <h2 id="browsers">Supported Browsers</h2>
+                <img src="img/firefox.png" id="firefox" class="browsers" />
+                <img src="img/chrome.png" id="chrome" class="browsers"/>
+                <div id="bar">
+                    <span id="mainHint" class="hint"></span>
+                    <ul>
+                        <li>   <button id="previous" class="barButton" disabled="disabled" >-</button> </li>
+                        <li>   <button id="sample" class="barButton" >Sample1</button> </li>
+                        <li>   <button id="next" class="barButton" >+</button> </li>
+                        <li> <button id="clear" class="barButton">Clear</button> </li>
+                        <li>   <button id="demonstrate" class="barButton" >Tutorial</button> </li>
+                        <li>   <button id="about" class="barButton" >About</button> </li>
+                    </ul>
+                </div>
+                <div id="inputBox" class="boxes">
+                    <span id="inputHint" class="hint"></span>
+                    <span id="title1" class="titles">File Input    </span>
+                    <div id="browseBox" class="inputBox" >
+                        <button id="browseButton" class="button">Browse</button>
+                        <span id="browseOut">No file chosen</span>
+                        <input type="file" id="browseFile" />
+                    </div>
+                    <div id="dropBox" class="inputBox">
+                        <h3>Drop files here</h3>
+                        <span id="dropOut">No file chosen</span></div>
+                    <button id="processInput">Process Input</button>
+                    <div id="stateBox" class="inputBox">
+                        <span id="stateOut">Waiting for File</span>
+                    </div>
+                </div>
+
+                <div id="out1" class="boxes">
+                    <span id="title2" class="titles"> Transaction Tree</span>
+                    <div id="treebox" class="outputBoxes"><span id="treeboxOut"></span> 
+                    </div>
+                </div>
+                <div id="out2" class="boxes"> 
+                    <span id="title3" class="titles">Vector Format</span>
+
+                    <div id="vectorbox" class="outputBoxes"><span id="vectorboxOut"></span></div>
+                </div>
+                <div id="out3" class="boxes">
+                    <span id="title4" class="titles">Num. of Participants</span>
+                    <span id="title5" class="titles">Type</span>
+                    <span id="title6" class="titles">Number of Vectors</span>
+                    <div id="participants" class="detailsBox">
+                    </div>
+                    <div id="typeBox" class="detailsBox"><span id="type"></span>
+                    </div>
+                    <div id="vectors" class="detailsBox">
+                    </div>
+                </div>
+                <button id="exportTree" class="barButton" >Export</button>
+                <button id="exportVF" class="barButton" >Export</button>
+                <div id="format1">
+                    <button id="json" class="formatButton" disabled="disabled">JSON</button>
+                    <button id="xml" class="formatButton">XML</button>
+                </div>
+                <button id="autoEnable">Show Graph</button>
+                <button id="autoDisable">Hide Graph</button>
+                <button id="switchToTree" class="tabButton">Transaction Tree</button>
+                <button id="switchToAuto" class="tabButton">Automaton</button>
+                <button id="zoomIn"  class="zoom zoomIn"></button>
+                <button id="zoomOut" class="zoom zoomOut"></button>
+                <div id="transactionTree">
+                    <button id="closeTree" class="barButton" >X</button>
+                    <span id="treeTitle"> Transaction Tree</span>
+                    <div>
+                        <span id="treeHint" class="hint"></span>
+                        <ul id="treeCanvasBar" class="canvasBar">
+                            <li>   <button id="treeTransparent" class="barButton" >Transparent</button> </li>
+                            <li>   <button id="treeNontransparent" class="barButton" >Non-Trans</button> </li>
+                            <li>   <button id="treeClearCanvas" class="barButton" >Clear</button> </li>
+                            <li>   <button id="treeDrawCanvas" class="barButton" >Draw</button> </li>
+                            <li> <button id="treeHelp" class="barButton">Legend</button> </li>
+                        </ul>
+                    </div>
+                    <div id="canvasContainer2"></div>
+                </div>
+                <div id="automaton">
+                    <span id="autoTitle"> Transaction Automaton</span>
+                    <button id="closeAuto" class="barButton" >X</button>
+                    <div>
+                        <span id="autoHint" class="hint"></span>
+                        <ul id="canvasBar" class="canvasBar">
+                            <li> <button id="decRun" class="barButton" disabled="disabled">-</button> </li>
+                            <li> <button id="runButton" class="barButton">Run&#160;&#160;&#160;1</button> </li>
+                            <li> <button id="pauseButton" class="barButton">Pause&#160;&#160;&#160;&#160;1</button> </li>
+                            <li> <button id="resumeButton" class="barButton">Resume&#160;&#160;&#160;&#160;1</button> </li>
+                            <li> <button id="incRun" class="barButton" disabled="disabled">+</button> </li>
+                            <li>   <button id="transparent" class="barButton" >Transparent</button> </li>
+                            <li>   <button id="nontransparent" class="barButton" >Non-Trans</button> </li>
+                            <li>   <button id="reset" class="barButton" >Reset</button> </li>
+                            <li>   <button id="clearCanvas" class="barButton" >Clear</button> </li>
+                            <li>   <button id="drawCanvas" class="barButton" >Draw</button> </li>
+                            <li>   <button id="slower" class="barButton" >-</button> </li>
+                            <li>   <button id="speed" class="barButton" disabled="disabled" >3X</button> </li>
+                            <li>   <button id="faster" class="barButton" >+</button> </li>
+                            <li> <button id="help" class="barButton">How it works</button> </li>
+                        </ul>
+
+                    </div>
+                    <button id="exportAutoGraph" class="barButton">Export</button>
+                    <div id="canvasContainer"></div>
+                </div>
+
+                <div id="treeHelpMenu">
+                    <h4>Legend</h4>
+                    <img src="img/seq2.png" id="seq" class="legend"/>
+                    <img src="img/alt2.png" id="alt" class="legend"/>
+                    <img src="img/par2.png" id="par" class="legend"/>
+                    <img src="img/leaf2.png" id="leaf" class="legend"/>
+                    <div class="treeCommands" id="seqCom">Shows a sequential execution</div>
+                    <div class="treeCommands" id="altCom">Shows an alternative execution</div>
+                    <div class="treeCommands" id="parCom">Shows a parallel execution</div> 
+                    <div class="treeCommands" id="leafCom">Shows a message sent, service invocation</div>
+                </div>
+                <div id="helpMenu">
+                    <h3>How it works</h3>
+                    <h4>Forward Execution</h4>
+                    <div class="helpCommands">Press on a node to add error</div>
+                    <div class="helpCommands">Press again to remove the error</div>
+                    <h4>Recovery Execution</h4>
+                    <div class="helpCommands">Press on green node to retry execution</div>
+                    <div class="helpCommands">Press again to remove retry</div>
+                    <h4>Rules</h4>
+                    <div class="helpCommands">Cannot add error in recovery</div>
+                    <div class="helpCommands">Cannot retry in forward execution</div>
+                </div>
+
+                <form id="exportForm" action="downloadTree" method="POST" class="hidden">
+                    <input type="text" id="exportFile" name="exportFile" />
+                    <input type="text" id="exportType" name="exportType" />
+                </form>
+                <form id="guideForm" action="sampleJSON" method="GET" class="hidden"  >
+                </form>
+                <div id="copyright">Copyright 2012 by Pavlos Georgiou. All rights Reserved</div>
+            </div>
+            <canvas id="canvas"></canvas>
+        </div>
+        <script type="text/javascript" src="js/client.js"></script>
+        <script type="text/javascript" src="js/input/reader.js"></script>
+        <script type="text/javascript" src="js/handlers/stateHandler.js"></script>
+        <script type="text/javascript" src="js/handlers/eventHandler.js"></script>
+        <script type="text/javascript" src="js/handlers/clearHandler.js"></script>
+        <script type="text/javascript" src="js/registry/eventReg.js"></script>
+        <script type="text/javascript" src="js/registry/els.js"></script>
+        <script type="text/javascript" src="js/output/graph.js"></script>
+        <script type="text/javascript" src="js/output/printer.js"></script>
+        <script type="text/javascript" src="js/output/treeGraph.js"></script>
+        <script type="text/javascript" src="js/output/animator.js"></script>
+        <script type="text/javascript" src="js/processing/treeToLevels.js"></script>
+        <script type="text/javascript" src="js/processing/graphStruct.js"></script>
+        <script type="text/javascript" src="js/processing/treeToVector.js"></script>
+        <script type="text/javascript" src="js/processing/getVFDetails.js"></script>
+        <script type="text/javascript" src="js/processing/calcVector.js"></script>
+        <script type="text/javascript" src="js/initialize/initializer.js"></script>
+    </body>
+</html>

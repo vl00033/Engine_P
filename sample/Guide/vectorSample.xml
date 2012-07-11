@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vectorFormat>
+	<vector>(L ,L ,L)</vector>
+	<vector>(m1 ,L ,L)</vector>
+	<vector>(m1m2 ,L ,L)</vector>
+	<vector>(m1 ,m3 ,L)</vector>
+	<vector>(m1m2 ,L ,m5)</vector>
+	<vector>(m1 ,m3m4 ,L)</vector>
+	<vector>(m1 ,m3m6 ,L)</vector>
+	<vector>(m1m2 ,m3 ,m5)</vector>
+	<vector>(m1m2 ,m3m4 ,m5)</vector>
+	<vector>(m1m2 ,m3m6 ,m5)</vector>
+</vectorFormat>

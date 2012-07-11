@@ -1,0 +1,57 @@
+Guidelines on representing the transaction tree and vector format
+in a JSON format that can be used as an input for the web application
+
+Transaction Tree
+
+There are three main parts that need to be filled:
+
+1)	The root of the tree. It has only the id(String) of the root.
+	A sample root would look like below:
+		"root":{"id":"n1"}
+	
+2)	The nodes of the tree. This is an array represented in JSON format
+	that contains all of the nodes in the tree. Each node must have an 
+	id(String),its type which is either seq(Sequential), alt(Alternative)
+	or par(Parallel) and also its children's in an array. Node IDs must
+    start with "n". A sample array 
+	would look like this:
+		"nodes":[
+				{"id":"n1","type":"seq","children":["l1","n2"]},
+				{"id":"n2","type":"alt","children":["n3","n4"]}
+				]
+				
+				
+3)  The leaves of the tree. Each leaf has a unique id(String), the 
+    participant,service invocation(integer) used and the message
+	sent(string). Leaf IDs must start with "l" and messages 
+	must start with an "m". A sample leaves array is shown below:
+			 "leaves":[
+				{"id":"l1","participant":"1","message":"m1"},
+				{"id":"l2","participant":"2","message":"m2"}
+			]
+
+Vector Format
+
+This is simply a list of vectors so all that needs to be done
+is to add "vectorFormat":[ in front to define the vectors list
+and then one by one the vectors separated by comma.
+
+For example:
+{
+"vectorFormat":[
+	"(L ,L ,L)",
+	"(m1 ,L ,L)"
+	]
+}
+
+A vector represents the service invocations by each participant. The participants
+are the coordinators of the vector.
+
+For instance:
+(m1 ,L ,m3)
+
+This vector represents a service invocation m1 by participant 1 and a service
+invocation m3 by participant 3. 
+			
+A full sample of both a json transaction tree and vector format
+can be downloaded from the application

@@ -1,0 +1,5 @@
+node_modules
+input_files
+*.coffee
+voice_instructions.txt
+windows_Scripts

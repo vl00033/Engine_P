@@ -1,0 +1,6 @@
+{
+"num_vectors":5,
+"num_participants":3,
+"setType":{"name":"Asynchronous","value":0},
+"vectorFormat":{"items":[{"items":[1]},{"items":[2]},{"items":[3,4]},{"items":[5]}]}
+}
